@@ -1,6 +1,8 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Scanner;
 
 record Student(String firstName, String lastName, int studentId, double gpa, String grade)
 {
@@ -20,7 +22,34 @@ public class App
 {
     public static void main(String[] args) 
     {
-        var x = new Student("Jared", "Castro", 195785478, 4.0, "A");
-        System.out.println("Hello, World!");
+        var scan = new Scanner(System.in);
+        var students = new ArrayList<Student>();
+        while (scan.hasNextLine())
+        {
+            var ln = scan.nextLine();
+            var split = ln.split("\\s");
+            students.add(new Student(split[0], split[1], Integer.parseInt(split[2]), Double.parseDouble(split[3]), split[4]));
+        }
+
+        Comparator<Student> sorter;
+        if (args.length < 1 || args[0].equals("firstName"))
+            sorter = Student.byFirstName;
+        else if (args[0].equals("lastName"))
+            sorter = Student.byLastName;
+        else if (args[0].equals("studentId"))
+            sorter = Student.byStudentId;
+        else if (args[0].equals("gpa"))
+            sorter = Student.byGpa;
+        else if (args[0].equals("grade"))
+            sorter = Student.byGrade;
+        else
+            sorter = Student.byFirstName;
+        
+        students.sort(sorter);
+
+        for (var s : students)
+            System.out.println(s);
+
+        scan.close();
     }
 }
