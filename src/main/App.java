@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
 
-record Student(String firstName, String lastName, int studentId, double gpa, String grade)
+record Student(String firstName, String lastName, int studentId, double gradePerc, String grade)
 {
-    public static final Comparator<Student> byFirstName = (Student a, Student b) -> a.firstName().compareTo(a.firstName());
-    public static final Comparator<Student> byLastName = (Student a, Student b) -> a.lastName().compareTo(a.lastName());
+    public static final Comparator<Student> byFirstName = (Student a, Student b) -> a.firstName().compareTo(b.firstName());
+    public static final Comparator<Student> byLastName = (Student a, Student b) -> a.lastName().compareTo(b.lastName());
     public static final Comparator<Student> byStudentId = (Student a, Student b) -> a.studentId() - b.studentId();
     public static final Comparator<Student> byGpa = (Student a, Student b) -> {
-        if (a.gpa() > b.gpa())
+        if (a.gradePerc() > b.gradePerc())
             return 1;
-        else if (a.gpa() == b.gpa())
+        else if (a.gradePerc() == b.gradePerc())
             return 0;
         return -1;
     };
-    public static final Comparator<Student> byGrade = (Student a, Student b) -> a.grade().compareTo(a.grade());
+    public static final Comparator<Student> byGrade = (Student a, Student b) -> a.grade().compareTo(b.grade());
 }
 public class App
 {
