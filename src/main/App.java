@@ -38,7 +38,7 @@ public class App
             sorter = Student.byLastName;
         else if (args[0].equals("studentId"))
             sorter = Student.byStudentId;
-        else if (args[0].equals("gpa"))
+        else if (args[0].equals("gradePerc"))
             sorter = Student.byGpa;
         else if (args[0].equals("grade"))
             sorter = Student.byGrade;
